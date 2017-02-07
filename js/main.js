@@ -102,41 +102,33 @@ function addEvents(){
 function clickme(){
 
 		alert('Hey, you clicked me!');
-	
-
-	//$('table').on('click', clickme);
 };
-
+var mydata;
 //Module 3 starts
 function jQueryAjax(){
 	//defining data variable
-	var mydata;
+	
 	//ajax
 	$.ajax("data/MegaCities.geojson", {
 		dataType: "json",
 		success: function(response){
 			mydata = response;
-
 			//the data can be accessed
-			console.log("The data can be reached ", mydata);
+			console.log("The data can be accessed ", mydata);
 		}
 	});
 
 	//data cannot be acessed
-	console.log("This is now undefined ", mydata);
-
+	console.log("The data cannot be accessed ", mydata);
 	debugAjax();
 };
 //callback
 function debugCallback(response){
-	//adds data
-	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+	//adds data, <br> for line break
+	$('#mydiv').append('<br>GeoJSON data:<br> ' + JSON.stringify(mydata));
 };
 
 function debugAjax(){
-	
-	var mydata;
-
 	$.ajax("data/MegaCities.geojson", {
 		dataType: "json",
 		success: function(response){			
@@ -144,7 +136,6 @@ function debugAjax(){
 		}
 	});
 
-	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 };
 
 //call the initialize function when the document has loaded
