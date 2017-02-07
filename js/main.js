@@ -106,6 +106,100 @@ function clickme(){
 
 	//$('table').on('click', clickme);
 };
+//Module 3 starts
+function jsAjax(){
+    // Step 1: Create the request 
+    var ajaxRequest = new XMLHttpRequest();
+	
+	//callback
+function callback(response){
 
+    var mydata = response;
+
+    //pass data to another function
+    nextFunction(mydata);
+};
+
+function nextFunction(data){
+
+    console.log(data); //contains response data held by mydata in callback
+}; //end of callback
+    //Step 2: Create an event handler to send received data to a callback function
+    ajaxRequest.onreadystatechange = function(){
+        if (ajaxRequest.readyState === 4){
+            callback(ajaxRequest.response);
+        };
+    };
+
+    //Step 3: Open the server connection
+									//match the correct geojson
+    ajaxRequest.open('GET', 'data/map.geojson', true);
+
+    //Step 4: Set the response data type
+    ajaxRequest.responseType = "json";
+
+    //Step 5: Send the request
+    ajaxRequest.send();
+};
+
+//define callback function
+function callback(response){
+    //tasks using the data go here
+    //console.log(response);
+	//translating JSON to string
+	console.log(JSON.stringify(response));
+};
+//should window.onload be at the bottom?
+window.onload = jsAjax();
+//define AJAX function
+function jQueryAjax(){
+    //basic jQuery ajax method
+	$.getJSON("data/map.geojson", callback);
+    $.ajax("data/map.geojson", {
+        dataType: "json",
+        success: callback
+    });
+};
+
+//define callback function
+function callback(response, status, jqXHRobject){
+    //tasks using the data go here
+    console.log(response);
+};
+//an AJAX function
+function jQueryAjax(){
+    var mydata = $.ajax("data/map.geojson", {
+        dataType: "json"
+    });
+    return mydata;
+};
+
+var mydata = jQueryAjax();
+
+console.log(mydata); //the jQuery XMLHttpRequest object
+
+$(document).ready(jQueryAjax);
+
+function debugCallback(response){
+	
+	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+};
+//debug module 3
+function debugAjax(){
+	
+	var mydata;
+
+	$.ajax("data/map.geojson", {
+		dataType: "json",
+		success: function(response){
+			
+			debugCallback(mydata);
+		}
+	});
+
+	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+};
+
+$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
 //call the initialize function when the document has loaded
 $(document).ready(initialize);
