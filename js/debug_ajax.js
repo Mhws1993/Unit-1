@@ -1,5 +1,5 @@
 function debugCallback(response){
-	
+	//adds data
 	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
 };
 
