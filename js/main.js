@@ -45,7 +45,7 @@ function cities(){
 
     addColumns(cityPop);
     addEvents();
-	
+	 
 };
 
 function addColumns(cityPop){
