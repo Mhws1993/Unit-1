@@ -105,7 +105,7 @@ function clickme(){
 };
 
 //Module 3 starts
-//placed mydata outside and in front of functions for module 3 to get past errors
+//placed mydata outside and in front of functions for module 3 to get past errors 
 var mydata;
 function jQueryAjax(){
 	//defining data variable
