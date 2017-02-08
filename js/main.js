@@ -56,7 +56,7 @@ function addColumns(cityPop){
 
     		$(this).append('<th>City Size</th>');
     	} else {
-
+			//find size based on population
     		var citySize;
 
     		if (cityPop[i-1].population < 100000){
@@ -78,7 +78,7 @@ function addColumns(cityPop){
 function addEvents(){
 
 	$('table').mouseover(function(){
-		
+		//creates the color for the text
 		var color = "rgb(";
 
 		for (var i=0; i<3; i++){
@@ -103,8 +103,10 @@ function clickme(){
 
 		alert('Hey, you clicked me!');
 };
-var mydata;
+
 //Module 3 starts
+//placed mydata outside and in front of functions for module 3 to get past errors
+var mydata;
 function jQueryAjax(){
 	//defining data variable
 	
@@ -122,6 +124,7 @@ function jQueryAjax(){
 	console.log("The data cannot be accessed ", mydata);
 	debugAjax();
 };
+
 //callback
 function debugCallback(response){
 	//adds data, <br> for line break
